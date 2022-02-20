@@ -1,0 +1,24 @@
+Objects
+
+Level 
+    - Player name
+    - Difficulty Level
+    - Current Level
+    - Current question
+    - Correct answer
+    - Spaceships
+    - Cannon
+
+
+Spaceship 
+    - Color
+    - Speed
+    - Question
+    - Position?
+
+Cannon
+    - Answer
+    - Position
+    
+
+
