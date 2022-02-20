@@ -4,10 +4,35 @@ Level
     - Player name
     - Difficulty Level
     - Current Level
-    - Current question
-    - Correct answer
+    - Questions Array
+    - Answer
+    - Hits
+    - Misses
     - Spaceships
     - Cannon
+    - Audio
+
+    Methods:  
+    - Display timer
+    - Display hits
+    - Display misses
+    - Display difficulty
+    - Display question on spaceships
+    - Toggle audio (?)
+    - Pull from Api > populate questions and answer properities (first time and for resetting)
+
+    - Create spaceships object with given questions from api
+    - Create cannon object with answer from api
+
+    - Make Spaceships move
+    - User moves cannon
+    - User shoots cannon (animation)
+    - Check cannon answer with spaceship question
+
+    Unsure if methods:
+    - If spaceship touches cannon or platform, lose condition.
+    - If timer runs out without loss, win condition.
+
 
 
 Spaceship 
