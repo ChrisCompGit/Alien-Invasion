@@ -8,25 +8,23 @@ Level
     - Answer
     - Hits
     - Misses
-    - Spaceships
-    - Cannon
+    - Score
+    - Spaceships (object)
+    - Cannon (object)
     - Audio
 
     Methods:  
     - Display timer
     - Display hits
     - Display misses
-    - Display difficulty
-    - Display question on spaceships
+    - Display score
     - Toggle audio (?)
     - Pull from Api > populate questions and answer properities (first time and for resetting)
 
-    - Create spaceships object with given questions from api
+    - Create spaceships object with the perimeters - given questions from api, position and type (randomise)
     - Create cannon object with answer from api
 
     - Make Spaceships move
-    - User moves cannon
-    - User shoots cannon (animation)
     - Check cannon answer with spaceship question
 
     Unsure if methods:
@@ -35,15 +33,25 @@ Level
 
 
 
-Spaceship 
-    - Color
+Spaceship Class
+    - Type
     - Speed
     - Question
     - Position?
 
+    Methods:  
+    - Display question on spaceships
+    - Make Spaceship explode
+
+
 Cannon
     - Answer
     - Position
+
+    Methods:  
+    - Display answer on cannon
+    - User shoots cannon (animation)
+    - User moves cannon
     
 
 

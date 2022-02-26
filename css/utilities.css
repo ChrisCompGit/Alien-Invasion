@@ -1,7 +1,14 @@
 .grid
 {
     display: grid;
+}
 
+.grid-100
+{
+    display: grid;
+    height: 100%;
+    width: 100%;
+    align-content: center;
 }
 
 .grid-col-1
@@ -27,6 +34,12 @@
 
 }
 
+.grid-col-5
+{
+    grid-template-columns: repeat(5,1fr);
+
+}
+
 .grid-itemX-col2-span-2
 {
     grid-column:2/span 2;
@@ -41,17 +54,23 @@
 {
     justify-self: left;
 }
-.grid-itemX-pos-center
+
+.grid-selfX-pos-center
 {
     justify-self: center;
 }
 
-.grid-itemY-pos-center
+.grid-items-pos-center
+{
+    justify-items: center;
+}
+
+.grid-selfY-pos-center
 {
     align-self: center;
 }
 
-.grid-itemX-pos-right
+.grid-selfX-pos-right
 {
     justify-self: right;
 }
@@ -59,4 +78,37 @@
 .grid-col-space-x1
 {
     column-gap: 10px;
+}
+
+.align-items-center
+{
+    align-items: center;
+}
+
+.hide
+{
+    display: none;
+}
+
+.menu-font
+{
+    font-size: 3rem;
+    color: yellow;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.rules-font
+{
+    font-size: 3rem;
+    color: yellow;
+    text-align: center;
+}
+
+.rule-menu
+{
+    justify-self: center;
+    position: fixed;
+    column-gap: 20px;
+    bottom: 30px;
 }

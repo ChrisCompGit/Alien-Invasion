@@ -4,83 +4,110 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>Alien Invasion</title>
+    <!--CSS Import-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/utilities.css">
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!--JavaScript Import-->
+    <script defer src="js/app.js"></script>
 </head>
+
 <body>
 
-    <!-- Welcome Screen + Menu -->
     <div>
-        <!-- Welcome -->
-        <h1>Alien Invasion</h1>
-        <h2>Star Wars Edition</h2>
-        <div>Play</div>
+
+        <!-- Welcome Screen + Menu -->
+        <div class="start-screen">
+            <!-- Welcome 
+            <h1>Alien Invasion</h1>
+            <h2>Star Wars Edition</h2> -->
+            <div class="play-btn btn">Play</div>
+        </div>
 
         <!-- Main Menu -->
-        <div class="grid">
-            <h2>What would you like to do?</h2>
-            <div>Start Game</div>
-            <div>View Rules</div>
-            <div>Exit Game</div>
+        <div class="menu-screen hide">
+            <div class="grid-100 grid-items-pos-center align-items-center">
+                <h2 class="menu-font">What would you like to do?</h2>
+                <div class="menu-btn btn">Start Game</div>
+                <div class="menu-btn btn">View Rules</div>
+                <div class="menu-btn btn">Exit Game</div>
+            </div>
         </div>
-    </div>
+
+        <!-- Rules -->
+        <div class="rules-screen hide">
+            <div class="grid-100">
+                <div class="grid grid-items-pos-center align-items-center">
+                    <!-- <h2>Rules</h2> -->
+                    <p class="rules-font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, corrupti.</p>
+                    <p class="rules-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, sequi!</p>
+                    <p class="rules-font">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, quod?</p>
+                </div>
+                <div class="grid grid-col-2 grid-items-pos-center rule-menu">            
+                    <div class="rules-btn btn">Back to Menu</div>
+                    <div class="rules-btn btn">Exit Game</div>
+                </div>
+            </div>                
+        </div>
 
 
-    <!-- Rules -->
-    <div>
-        <h1>Rules</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, corrupti.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, sequi!</p>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, quod?</p>
-    </div>
+        <!-- Game Start -->
+        <div class="start-screen hide">
+            <form>
+                <label for="userName">Enter your name</label>
+                <input type="text" id="userName">
+                <div>Difficulty level: </div>
+                <button id="easyDifficulty" type="button">Easy</button>
+                <button id="hardDifficulty" type="button">Hard</button>
+            </form>
+        </div>
 
 
-    <!-- Game Start -->
-    <div>
-        <form>
-            <label for="userName">Enter your name</label>
-            <input type="text" id="userName">
-            <div>Difficulty level: </div>
-            <button id="easyDifficulty" type="button">Easy</button>
-            <button id="hardDifficulty" type="button">Hard</button>
-        </form>
-    </div>
+        <!-- Gameplay -->
+        <div class="level-1-background hide">
+            <!-- ??? -->
+        </div>
 
-
-    <!-- Gameplay -->
-    <div>
+        
+        <!-- Gameplay -->
+        <div class="level-2-background hide">
         <!-- ??? -->
-    </div>
+        </div>      
 
 
-    <!-- Level win screen -->
-    <div>
-        <h1>Congratulations!</h1>
-        <div>Next</div>
-        <div>Quit Game</div>
-    </div>
-
-
-    <!-- Level lose screen -->
-    <div>
-        <h1>Sorry, you lost!</h1>
-
-        <div>
-            <div>Restart Game</div>
-            <div>Quit Game</div>
+        <!-- Level win screen -->
+        <div class="congrats-screen hide">
+            <h1>Congratulations!</h1>
+            <div >Next</div>             <!--Save???-->
+            <div >Quit Game</div>
         </div>
-    </div>
 
 
-    <!-- Victory Screen -->
-    <div>
-        <h1>Congratulations! You won the game!</h1>
-        <div>
-            <div>Restart Game</div>
-            <div>Quit Game</div>
+        <!-- Level lose screen -->
+        <div class="gameover-screen hide">
+            <h1>Sorry, you lost!</h1>
+
+            <div>
+                <div >Restart Game</div>
+                <div >Quit Game</div>
+            </div>
         </div>
-    </div>
 
+
+        <!-- Victory Screen -->
+        <div class="congrats-screen hide">
+            <h1>Congratulations! You won the game!</h1>
+            <div>
+                <div class="btn">Restart Game</div>
+                <div class="btn">Quit Game</div>
+            </div>
+        </div>
+
+    </div>
 
 </body>
 </html>
