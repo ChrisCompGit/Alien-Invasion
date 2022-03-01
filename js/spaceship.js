@@ -1,6 +1,5 @@
 
 import{menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1} from "./DOMTree.js";
-type: module;
 
 class Spaceship 
 {
@@ -18,7 +17,7 @@ class Spaceship
     constructor(type, question, marginTop, position)
     {
         this.type = type;
-        this.questions = question;
+        this.question = question;
         this.marginTop = marginTop;
         this.gridPosition = position;
 
@@ -30,10 +29,17 @@ class Spaceship
         else if(type == 2)
         {
             this.speed = 15
+            this.image = "../media/Game-Objects/Spaceship-2.png";
         }
         else if(type == 3)
         {
             this.speed = 5
+            this.image = "../media/Game-Objects/Spaceship-4.png";
+        }
+        else if(type == 4)
+        {
+            this.speed = 15
+            this.image = "../media/Game-Objects/Spaceship-5.png";
         }
 
         this.createSpaceship()
@@ -51,14 +57,24 @@ class Spaceship
     createSpaceship () {
         //Create div for spaceship
         const spaceshipDOM = gameGrid.appendChild(document.createElement("div"));
+
+        //Add question
+        const question = spaceshipDOM.appendChild(document.createElement("p"));
+        question.innerText = this.question;
         
 
         //Style the div
         spaceshipDOM.style.cssText = `
-        height: 50px;
-        width: 49px;
+        display: grid;
+        height: 200px;
+        width: 199px;
         grid-column: ${this.gridPosition};
-        background: url(${this.image});
+        background: url(${this.image}) no-repeat center center/cover;
+        margin-top: ${this.marginTop};
+        z-index:
+        text-align: center;
+        align-content: center;
+        justify-content: center;
         margin-top: ${this.marginTop};
         `;
 

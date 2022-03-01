@@ -55,7 +55,10 @@ const main = (() => {
         level1.classList.remove("hide");
         
         //test
-        const testShip = new Spaceship (1, "1+2", 10, 1);
+        const testShip1 = new Spaceship (1, "1+2", 10, 1);
+        const testShip2 = new Spaceship (2, "3+4", 10, 2);
+        const testShip3 = new Spaceship (3, "5+6", 10, 3);
+        const testShip4 = new Spaceship (4, "7+8", 10, 4);
 
     });
 
