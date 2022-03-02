@@ -12,7 +12,7 @@ class Spaceship
     marginTop;
     bottomLine;
     gridPosition;
-    DOMElement
+    DOMElement;
 
     constructor(type, question, marginTop, position)
     {
@@ -42,7 +42,8 @@ class Spaceship
             this.image = "../media/Game-Objects/Spaceship-5.png";
         }
 
-        this.createSpaceship()
+        this.createSpaceship();
+        this.shipMove();
     }
 
 
@@ -71,16 +72,28 @@ class Spaceship
         grid-column: ${this.gridPosition};
         background: url(${this.image}) no-repeat center center/cover;
         margin-top: ${this.marginTop};
-        z-index:
         text-align: center;
         align-content: center;
         justify-content: center;
-        margin-top: ${this.marginTop};
+        margin-top: ${this.marginTop}px;
         `;
 
         //Assign it to property
         this.DOMElement = spaceshipDOM;
     }
+
+
+    //Make the Spaceshio move
+    shipMove() {
+
+        const startMove = () => { 
+            const shipMovement = setInterval(()=>{
+                this.DOMElement.style.marginTop = `${this.marginTop + this.speed}px`;
+            }, 1000)
+        }
+    }
+    
+    
 
 }
 
