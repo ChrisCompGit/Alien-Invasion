@@ -23,27 +23,27 @@ class Spaceship
 
         if(type == 1)
         {
-            this.speed = 10;
+            this.speed = 2;
             this.image = "../media/Game-Objects/Spaceship-1.png";
         }
         else if(type == 2)
         {
-            this.speed = 15
+            this.speed = 3
             this.image = "../media/Game-Objects/Spaceship-2.png";
         }
         else if(type == 3)
         {
-            this.speed = 5
+            this.speed = 1
             this.image = "../media/Game-Objects/Spaceship-3.png";
         }
         else if(type == 4)
         {
-            this.speed = 15
+            this.speed = 3
             this.image = "../media/Game-Objects/Spaceship-4.png";
         }
         else if(type == 5)
         {
-            this.speed = 15
+            this.speed = 2
             this.image = "../media/Game-Objects/Spaceship-5.png";
         }
 
@@ -104,7 +104,7 @@ class Spaceship
             const shipMovement = setInterval(()=>{
                 this.DOMElement.style.marginTop = `${this.marginTop+this.speed}px`;
                 this.marginTop = parseInt(this.DOMElement.style.marginTop);
-            }, 1000)
+            }, 250)
 
         };
 

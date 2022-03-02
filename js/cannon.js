@@ -72,15 +72,17 @@ class Cannon {
         }*/
 
         document.addEventListener("keydown", event => {
-            if(event.key===ArrowRight)
+            if(event.key==="ArrowRight")
             {
+                console.log(event.key);
+
             if (this.gridPosition < 5)  
                 {  
                 this.gridPosition++;
                 this.DOMElement.style.gridColumn = this.gridPosition;
                 }
             }
-            else if(event.key===ArrowLeft)
+            else if(event.key==="ArrowLeft")
             {
                 if (this.gridPosition > 1)  
                 {  
