@@ -71,12 +71,16 @@ class Spaceship
         width: 199px;
         grid-column: ${this.gridPosition};
         background: url(${this.image}) no-repeat center center/cover;
-        margin-top: ${this.marginTop};
         text-align: center;
         align-content: center;
         justify-content: center;
         margin-top: ${this.marginTop}px;
         `;
+
+        question.style.backgroundColor = "black";
+        question.style.color = "red";
+        question.style.fontSize = "25px";
+        question.style.padding = "0px 10px";
 
         //Assign it to property
         this.DOMElement = spaceshipDOM;
@@ -86,11 +90,20 @@ class Spaceship
     //Make the Spaceshio move
     shipMove() {
 
-        const startMove = () => { 
+        const startMove = ()=>{ 
             const shipMovement = setInterval(()=>{
-                this.DOMElement.style.marginTop = `${this.marginTop + this.speed}px`;
+                this.DOMElement.style.marginTop = `${this.marginTop+this.speed}px`;
+                this.marginTop = parseInt(this.DOMElement.style.marginTop);
             }, 1000)
-        }
+
+        };
+
+        startMove();
+
+    }
+
+    shipStop() {
+        clearInterval(shipMovement);
     }
     
     

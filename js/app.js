@@ -59,7 +59,9 @@ const main = (() => {
         const testShip2 = new Spaceship (2, "3+4", 10, 2);
         const testShip3 = new Spaceship (3, "5+6", 10, 3);
         const testShip4 = new Spaceship (4, "7+8", 10, 4);
-        testShip1.shipMove();
+
+        testShip1.shipStop();
+        //testShip1.shipMove;
 
     });
 
