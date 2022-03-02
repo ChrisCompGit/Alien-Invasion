@@ -1,5 +1,6 @@
 import{menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, easyDifficulty, hardDifficulty} from "./DOMTree.js";
 import { Spaceship } from "./spaceship.js";
+import { Cannon } from "./cannon.js";
 
 const main = (() => {
 
@@ -59,9 +60,10 @@ const main = (() => {
         const testShip2 = new Spaceship (2, "3+4", 10, 2);
         const testShip3 = new Spaceship (3, "5+6", 10, 3);
         const testShip4 = new Spaceship (4, "7+8", 10, 4);
-        const testShip5 = new Spaceship (4, "9+10", 10, 4);
-        testShip1.shipStop();
-        //testShip1.shipMove;
+        const testShip5 = new Spaceship (5, "9+10", 10, 5);
+
+        const testCannon = new Cannon ("3+4");
+
 
     });
 

@@ -10,7 +10,7 @@ class Spaceship
     image;
     question;
     marginTop;
-    bottomLine;
+    shipBottom;
     gridPosition;
     DOMElement;
 
@@ -41,7 +41,7 @@ class Spaceship
             this.speed = 15
             this.image = "../media/Game-Objects/Spaceship-4.png";
         }
-        else if(type == 4)
+        else if(type == 5)
         {
             this.speed = 15
             this.image = "../media/Game-Objects/Spaceship-5.png";
@@ -76,13 +76,17 @@ class Spaceship
         height: 200px;
         width: 199px;
         grid-column: ${this.gridPosition};
+        grid-row: 1 / 5;
         background: url(${this.image}) no-repeat center center/cover;
         text-align: center;
         align-content: center;
         justify-content: center;
         margin-top: ${this.marginTop}px;
+        align-self: start;
+        margin-bottom: -3000px;
         `;
 
+        //Style the answer
         question.style.backgroundColor = "black";
         question.style.color = "red";
         question.style.fontSize = "25px";
