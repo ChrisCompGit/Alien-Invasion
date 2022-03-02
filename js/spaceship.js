@@ -34,6 +34,11 @@ class Spaceship
         else if(type == 3)
         {
             this.speed = 5
+            this.image = "../media/Game-Objects/Spaceship-3.png";
+        }
+        else if(type == 4)
+        {
+            this.speed = 15
             this.image = "../media/Game-Objects/Spaceship-4.png";
         }
         else if(type == 4)
@@ -41,6 +46,7 @@ class Spaceship
             this.speed = 15
             this.image = "../media/Game-Objects/Spaceship-5.png";
         }
+
 
         this.createSpaceship();
         this.shipMove();
@@ -105,8 +111,6 @@ class Spaceship
     shipStop() {
         clearInterval(shipMovement);
     }
-    
-    
 
 }
 
