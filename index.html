@@ -13,7 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <!--JavaScript Import-->
-    <script defer src="js/app.js"></script>
+    <script defer src="js/app.js" type="module"></script>
+    <script defer src="js/spaceship.js" type="module"></script>
 </head>
 
 <body>
@@ -56,25 +57,31 @@
 
 
         <!-- Game Start -->
-        <div class="start-screen hide">
-            <form>
-                <label for="userName">Enter your name</label>
-                <input type="text" id="userName">
-                <div>Difficulty level: </div>
-                <button id="easyDifficulty" type="button">Easy</button>
-                <button id="hardDifficulty" type="button">Hard</button>
+        <div id="username" class="menu-screen grid grid-items-pos-center align-items-center hide">
+            <form class="grid grid-col-1">
+                <label for="userName" class="rules-font line-height">Enter your name</label>
+                <input type="text" id="userName" class="form-border">
+                <div class="rules-font padding-top-med">Difficulty Level: </div>
+                <div id="easyDifficulty" class="rules-btn btn" type="button">Easy</div>
+                <div id="hardDifficulty" class="rules-btn btn" type="button">Hard</div>
             </form>
         </div>
 
 
-        <!-- Gameplay -->
-        <div class="level-1-background hide">
+        <!-- Gameplay LVL 1-->
+        <div id="level1" class="level-1-background hide">
+            <div id="gameGrid" class="grid grid-items-pos-center grid-col-5">
+
+            </div>
             <!-- ??? -->
         </div>
 
         
-        <!-- Gameplay -->
+        <!-- Gameplay LVL 2-->
         <div class="level-2-background hide">
+            <div id="level2" class="grid grid-col-5">
+
+            </div>
         <!-- ??? -->
         </div>      
 

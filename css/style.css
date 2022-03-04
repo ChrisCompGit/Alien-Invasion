@@ -8,6 +8,8 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Work Sans', sans-serif;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .start-screen{
@@ -56,7 +58,6 @@
     background: url(../media/Screens/Level-1-Background.jpg) no-repeat center center/cover;
     width: 100%;
     height: 100%;
-    max-width: 100%;
     position: absolute;
     top: 0;
     left: 0;
@@ -135,3 +136,12 @@
     cursor: pointer;
 }
 
+
+#gameGrid {
+    width: 100%;
+    height: 100%;
+    column-gap: 50px;
+    justify-items: center;
+    grid-template-rows: 5;
+    
+}
