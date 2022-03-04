@@ -65,6 +65,9 @@ const main = (() => {
         const testCannon = new Cannon ("3+4");
 
 
+        setTimeout(console.log("test"), 5000);
+
+
     });
 
     

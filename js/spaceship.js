@@ -49,7 +49,7 @@ class Spaceship
 
 
         this.createSpaceship();
-        this.shipMove();
+        this.shipMove(true);
     }
 
 
@@ -98,17 +98,25 @@ class Spaceship
 
 
     //Make the Spaceshio move
-    shipMove() {
+    shipMove(b) {
 
-        const startMove = ()=>{ 
-            const shipMovement = setInterval(()=>{
-                this.DOMElement.style.marginTop = `${this.marginTop+this.speed}px`;
-                this.marginTop = parseInt(this.DOMElement.style.marginTop);
-            }, 250)
+            const startMove = ()=> {
 
-        };
+                //Fix the boolean
+                const shipMovement = setInterval(()=>{
+                    this.DOMElement.style.marginTop = `${this.marginTop+this.speed}px`;
+                    this.marginTop = parseInt(this.DOMElement.style.marginTop);
+                }, 250)
+                
+                if (b == false) {
+                    clearInterval(shipMovement);
+                }  
+            }
 
-        startMove();
+                if (b == true) { 
+                    
+                startMove();
+                }
 
     }
 
