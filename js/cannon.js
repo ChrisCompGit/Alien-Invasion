@@ -1,4 +1,4 @@
-import{menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1} from "./DOMTree.js";
+import {menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1} from "./DOMTree.js";
 
 class Cannon {
     gridPosition = 3;
@@ -6,6 +6,9 @@ class Cannon {
     answer;
     cannonTop;
     DOMElement;
+    DOMRect;
+    projectile;
+    projectileRect;
 
 
     constructor (answer) {
@@ -14,6 +17,7 @@ class Cannon {
 
         this.createCannon();
         this.cannonMove();
+        this.getDOMRect();
     }
 
     createCannon() {
@@ -36,7 +40,7 @@ class Cannon {
         text-align: center;
         align-content: center;
         justify-content: center;
-        margin-bottom: -30px;
+        margin-bottom: -15px;
         `;
 
         //Style the answer
@@ -74,8 +78,6 @@ class Cannon {
         document.addEventListener("keydown", event => {
             if(event.key==="ArrowRight")
             {
-                console.log(event.key);
-
             if (this.gridPosition < 5)  
                 {  
                 this.gridPosition++;
@@ -90,7 +92,62 @@ class Cannon {
                 this.DOMElement.style.gridColumn = this.gridPosition;
                 }
             }
-        })
+        });
+    }
+    
+    cannonShoot() {
+
+        const projectile = this.DOMElement.appendChild(document.createElement("div"));
+        let projectileBottom = 0;
+
+        projectile.style.cssText = `
+        position: absolute;
+        height: 100px;
+        width: 80px;
+        background: url("../media/Game-Objects/Cannon-Shot.gif") no-repeat center center/contain;
+        transform: rotate(-90deg);
+        z-index: 0;
+        `;
+
+
+        const freeProjectile = setTimeout( () => {
+            const projectilePos = projectile.getBoundingClientRect();
+
+
+            projectile.style.cssText = `
+            position: fixed;
+            height: 100px;
+            width: 80px;
+            left: ${projectilePos.left + 60}px;
+            bottom: ${projectilePos.bottom}px;
+            background: url("../media/Game-Objects/Cannon-Shot.gif") no-repeat center center/contain;
+            transform: rotate(-90deg);
+            z-index: 0;
+            `;
+
+            
+
+        }, 1) 
+
+        const projectileUp = setInterval(()=>{
+            
+            projectile.style.bottom = `${projectileBottom}px`;
+            projectileBottom+= 4;
+            this.projectile = projectile;
+        }, 2);
+
+        
+
+    }
+
+    getDOMRect () {
+        const DOMRectMonitor = setInterval(()=>{
+            this.DOMRect = this.DOMElement.getBoundingClientRect();
+
+            if (this.projectile != undefined) {
+            this.projectileRect = this.projectile.getBoundingClientRect();
+            }
+        }, 2)
     }
 
 }

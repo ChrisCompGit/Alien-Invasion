@@ -1,10 +1,11 @@
 
-import{menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1} from "./DOMTree.js";
+import {menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1} from "./DOMTree.js";
 
 class Spaceship 
 {
     //Properties
 
+    difficulty;   
     type;
     speed;
     image;
@@ -13,43 +14,47 @@ class Spaceship
     shipBottom;
     gridPosition;
     DOMElement;
+    shipMovement;
+    DOMRect;
 
-    constructor(type, question, marginTop, position)
+    constructor(type, question, marginTop, position, difficulty)
     {
         this.type = type;
         this.question = question;
         this.marginTop = marginTop;
         this.gridPosition = position;
+        this.difficulty = difficulty;
 
         if(type == 1)
         {
-            this.speed = 2;
+            this.speed = .6;
             this.image = "../media/Game-Objects/Spaceship-1.png";
         }
         else if(type == 2)
         {
-            this.speed = 3
+            this.speed = .4;
             this.image = "../media/Game-Objects/Spaceship-2.png";
         }
         else if(type == 3)
         {
-            this.speed = 1
+            this.speed = .32;
             this.image = "../media/Game-Objects/Spaceship-3.png";
         }
         else if(type == 4)
         {
-            this.speed = 3
+            this.speed = .7;
             this.image = "../media/Game-Objects/Spaceship-4.png";
         }
         else if(type == 5)
         {
-            this.speed = 2
+            this.speed = .6;
             this.image = "../media/Game-Objects/Spaceship-5.png";
         }
 
 
         this.createSpaceship();
         this.shipMove(true);
+        this.getDOMRect();
     }
 
 
@@ -100,29 +105,30 @@ class Spaceship
     //Make the Spaceshio move
     shipMove(b) {
 
-            const startMove = ()=> {
-
-                //Fix the boolean
-                const shipMovement = setInterval(()=>{
-                    this.DOMElement.style.marginTop = `${this.marginTop+this.speed}px`;
-                    this.marginTop = parseInt(this.DOMElement.style.marginTop);
-                }, 250)
+        if (b) {
+            this.shipMovement = setInterval(()=>{
                 
-                if (b == false) {
-                    clearInterval(shipMovement);
-                }  
-            }
+                this.DOMElement.style.marginTop = `${this.marginTop+this.speed}px`;
+                this.marginTop = parseFloat(this.DOMElement.style.marginTop);
 
-                if (b == true) { 
-                    
-                startMove();
-                }
+            }, 25)
+        }
 
+        if (!b) {
+            clearInterval(this.shipMovement);
+            console.log("test");
+        } 
     }
 
     shipStop() {
-        clearInterval(shipMovement);
+        clearInterval(this.shipMovement);
     }
+
+
+    getDOMRect () {
+        const DOMRectMonitor = setInterval(()=>{
+            this.DOMRect = this.DOMElement.getBoundingClientRect();
+    }, 2)};
 
 }
 

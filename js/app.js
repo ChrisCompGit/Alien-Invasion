@@ -1,6 +1,7 @@
-import{menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, easyDifficulty, hardDifficulty} from "./DOMTree.js";
+import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, easyDifficulty, hardDifficulty, timerNode} from "./DOMTree.js";
 import { Spaceship } from "./spaceship.js";
 import { Cannon } from "./cannon.js";
+import { Level } from "./level.js";
 
 const main = (() => {
 
@@ -39,6 +40,9 @@ const main = (() => {
 
     //Rules Screen
 
+
+
+
     backToMenuButton.addEventListener("click",() =>{
         rulesScreen.classList.add("hide");
         menu.classList.remove("hide");
@@ -55,17 +59,51 @@ const main = (() => {
         menu.classList.add("hide");
         level1.classList.remove("hide");
         
-        //test
+        //Testing Spaceship
         const testShip1 = new Spaceship (1, "1+2", 10, 1);
         const testShip2 = new Spaceship (2, "3+4", 10, 2);
         const testShip3 = new Spaceship (3, "5+6", 10, 3);
         const testShip4 = new Spaceship (4, "7+8", 10, 4);
         const testShip5 = new Spaceship (5, "9+10", 10, 5);
 
+        const spaceshipArray = [testShip1, testShip2, testShip3, testShip4, testShip5]
+        //spaceshipArray.push = [testShip1, testShip2, testShip3, testShip4, testShip5];
+    
+        
+        /* //Testing shipStop()
+
+        function testStop () {
+
+            testShip1.shipStop();
+        }
+
+        setTimeout(testStop, 5000);
+        */
+        
+        /*
+        const test = setInterval(()=>{
+            console.log(testShip4.DOMRect)
+
+        }, 3000) */
+
+
+
+        //Testing Cannon
+
         const testCannon = new Cannon ("3+4");
+        
+        document.addEventListener("keydown", event => {
+            if(event.key===" ")
+            {
+                testCannon.cannonShoot();
+            };
+        });
+              
+                
 
-
-        setTimeout(console.log("test"), 5000);
+        const intervalTest = setTimeout(() => {
+        const testLevel = new Level (90, spaceshipArray, testCannon);
+        }, 200)
 
 
     });
