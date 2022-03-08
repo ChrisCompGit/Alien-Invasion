@@ -129,6 +129,13 @@ class Spaceship
         const DOMRectMonitor = setInterval(()=>{
             this.DOMRect = this.DOMElement.getBoundingClientRect();
     }, 2)};
+    
+
+    hardDifficultyCheck () {
+        if (this.difficulty == 1) {
+            this.speed *= 1.25;
+        }
+    }
 
 }
 

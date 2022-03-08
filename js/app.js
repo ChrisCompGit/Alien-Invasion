@@ -2,6 +2,8 @@ import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen,
 import { Spaceship } from "./spaceship.js";
 import { Cannon } from "./cannon.js";
 import { Level } from "./level.js";
+// import { createSpaceships } from "./createSpaceships.js";
+
 
 const main = (() => {
 
@@ -60,14 +62,20 @@ const main = (() => {
         level1.classList.remove("hide");
         
         //Testing Spaceship
-        const testShip1 = new Spaceship (1, "1+2", 10, 1);
+        
+        /*const testShip1 = new Spaceship (1, "1+2", 10, 1);
         const testShip2 = new Spaceship (2, "3+4", 10, 2);
         const testShip3 = new Spaceship (3, "5+6", 10, 3);
         const testShip4 = new Spaceship (4, "7+8", 10, 4);
         const testShip5 = new Spaceship (5, "9+10", 10, 5);
 
-        const spaceshipArray = [testShip1, testShip2, testShip3, testShip4, testShip5]
+        const spaceshipArray = [testShip1, testShip2, testShip3, testShip4, testShip5];*/
         //spaceshipArray.push = [testShip1, testShip2, testShip3, testShip4, testShip5];
+
+        //const spaceshipArray = createSpaceships(0);
+        //console.log (spaceshipArray);
+
+
     
         
         /* //Testing shipStop()
@@ -102,7 +110,7 @@ const main = (() => {
                 
 
         const intervalTest = setTimeout(() => {
-        const testLevel = new Level (90, spaceshipArray, testCannon);
+        const testLevel = new Level (90, testCannon, 0);
         }, 200)
 
 
