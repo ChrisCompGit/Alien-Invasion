@@ -19,7 +19,6 @@ class Level {
     missCounter;
     playerName;
     currentLevel;
-    questionsArray;
     correctnQuestion;
     audio;
     collisionResult;
@@ -69,14 +68,13 @@ class Level {
         },1000);
     }
 
-
-    createSpaceships (difficulty) {
-    
+    createQuestions () {
         let questionsSetFinal;
+
+        let questionsUnique = false;
     
         //Create 5 unique questions
         do {
-            let questionsUnique = false;
     
             const questionsSetTest = new Set();
     
@@ -95,9 +93,40 @@ class Level {
             }
     
         } while (!questionsUnique);
+
+        const finalQuestionsArray = Array.from(questionsSetFinal);
+        return finalQuestionsArray;
+    }
+
+
+    createAnswer() {
+        const randomQuestionNumber = Math.floor(Math.random() * 4);
+        const chosenQuestion = this.spaceshipArray[randomQuestionNumber].question
+
+        return chosenQuestion;
+
+    }
+
+    questionAnswerReset () {
+
+        //question reset
+        const newQuestionsArray = this.createQuestions();
+        for (let i = 0; i < this.spaceshipArray.length; i++) {
+            this.spaceshipArray[i].question = newQuestionsArray[i];
+            this.spaceshipArray[i].DOMElement.firstElementChild.innerText = newQuestionsArray[i];
+        }
+
+        //answer reset
+        const newAnswer = this.createAnswer();
+        this.cannon.DOMElement.firstElementChild.innerText = this.createAnswer();
+
+    }
+
+
+    createSpaceships (difficulty) {
     
         //turn Set into Array so it can be traversed in order
-        const finalQuestionsArray = Array.from(questionsSetFinal);
+        const questionsArrayNew = this.createQuestions();
         //Placeholder Array for Spaceships
         let spaceshipArray = [];
     
@@ -106,24 +135,23 @@ class Level {
             const shipType = Math.floor(Math.random() * 4) + 1;
             const gridPositionTest = i + 1;
     
-            const createdShip = new Spaceship (shipType, finalQuestionsArray[i], 10, gridPositionTest);
+            const createdShip = new Spaceship (shipType, questionsArrayNew[i], 10, gridPositionTest);
             spaceshipArray.push(createdShip);
         }
         
         this.spaceshipArray = spaceshipArray;
-        this.questionsArray = finalQuestionsArray;
     
     }
 
     createCannon(gridPosition) {
 
         const randomQuestionNumber = Math.floor(Math.random() * 4);
-        const chooseQuestion = this.spaceshipArray[randomQuestionNumber].question;
-        this.correctQuestion = chooseQuestion;
+        const answer = this.createAnswer();
+        this.correctQuestion = answer;
 
         //waApi.getShort(chooseQuestion).then(console.log, console.error)
 
-        this.cannon = new Cannon (chooseQuestion, gridPosition);
+        this.cannon = new Cannon (answer, gridPosition);
 
     }
 
@@ -146,24 +174,28 @@ class Level {
                 //console.log("Cannon rect" + cannonRect.top);
 
 
+                if (spaceshipRect !== undefined) {
+                    if (((spaceshipRect.bottom - 50) > (cannonRect.top + 50)) && (this.cannon.gridPosition == currentSpaceship.gridPosition))
+                    {
+                        alert(`Game Over`);
+                        this.collisionResult = 0;
+                        this.collisionEvent();
+                    }
 
-                if (((spaceshipRect.bottom - 50) > (cannonRect.top + 50)) && (this.cannon.gridPosition == currentSpaceship.gridPosition))
-                {
-                    alert(`Game Over`);
-                    this.collisionResult = 0;
-                }
-
-                if ((spaceshipRect.bottom - 50) > (cannonRect.bottom - 60))
-                {
-                    alert(`Game Over`);
-                    this.collisionResult = 0;
-                }
-                if ((this.cannon.projectile != undefined) && (this.cannon.projectileRect != undefined) && ((spaceshipRect.bottom - 50) > (this.cannon.projectileRect.top + 50)) && (currentSpaceship.gridPosition == this.cannon.gridPosition)) {
-                    //alert(`Hit`);
-                    this.spaceshipHit = currentSpaceship;
-                    this.collisionResult = 1;
-                    
-                    this.questionHit = currentSpaceship.question;
+                    if ((spaceshipRect.bottom - 50) > (cannonRect.bottom - 60))
+                    {
+                        alert(`Game Over`);
+                        this.collisionResult = 0;
+                        this.collisionEvent();
+                    }
+                    if ((this.cannon.projectile !== undefined) && (this.cannon.projectileRect !== undefined) && ((spaceshipRect.bottom - 50) > (this.cannon.projectileRect.top + 50)) && (currentSpaceship.gridPosition == this.cannon.gridPosition)) {
+                        //alert(`Hit`);
+                        this.spaceshipHit = currentSpaceship;
+                        this.collisionResult = 1;
+                        
+                        this.questionHit = currentSpaceship.question;
+                        this.collisionEvent();
+                    }
 
                 }
             
@@ -173,7 +205,7 @@ class Level {
 
     collisionEvent() {
 
-        const collisionEventAction = setInterval(() => {
+        
 
             if (this.collisionResult == 0) {
                 this.gameOver == true;
@@ -189,20 +221,20 @@ class Level {
                     this.createSpaceships();
                     this.createCannon(currentCannonPosition);
                     this.questionHit = ``;
+                    this.collisionResult = undefined;
 
                 } 
-                else if ((this.questionHit !== this.correctQuestion) && (this.questionHit !==``)) {
+                else if ((this.questionHit !== this.correctQuestion) && (this.questionHit !==``) && (this.cannon.projectile !== undefined)) {
                     //console.log(this.questionHit);
                     //console.log(this.correctQuestion);
-                    console.log(this.questionHit);
-                    console.log(this.correctQuestion);
-                    alert(`Wrong`)
-                    
+                    this.cannon.clearProjectileOnly();
+                    this.questionAnswerReset();
+                    this.collisionResult = undefined;
 
 
                 }
             }
-        }, 2)
+        
     }
 
 }

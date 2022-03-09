@@ -170,9 +170,15 @@ class Cannon {
     }
 
     clearCannon() {
-        this.projectile.remove();
+        
         this.DOMElement.remove();
+        this.projectile.remove();
 
+    }
+
+    clearProjectileOnly() {
+        this.projectile.remove();
+        this.projectile = undefined;
     }
 
 }
