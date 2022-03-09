@@ -3,6 +3,9 @@ import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen,
 import { Spaceship } from "./spaceship.js";
 import { Cannon } from "./cannon.js";
 
+//const WolframAlphaAPI = require('wolfram-alpha-api');
+// const waApi = WolframAlphaAPI('42W65P-WRV9YT5WRW');
+
 
 class Level {
 
@@ -17,30 +20,37 @@ class Level {
     playerName;
     currentLevel;
     questionsArray;
-    answer;
+    correctnQuestion;
     audio;
     collisionResult;
     spaceshipHit;
+    questionHit;
+    gameOver;
+
     //score;
 
 
-    constructor (timer, cannon, difficulty, hitCounter, missCounter, playerName, currentLevel, questionsArray, answer, audio)
+    constructor (timer, difficulty, hitCounter, missCounter, playerName, currentLevel, questionsArray, answer, audio)
     {
         this.timer = timer;
-        this.cannon = cannon;
         this.difficulty = difficulty;
         this.hitCounter = hitCounter;
         this.missCounter = missCounter;
         this.playerName = playerName;
         this.currentLevel = currentLevel;
-        this.questionsArray = questionsArray;
         this.answer = answer;
         this.audio = audio;
 
     
         this.startTimer ();
         this.createSpaceships (this.difficulty);
+        this.createCannon(3);
+        
+        /* const intervalTest = setTimeout(() => {
         this.collisionTest ();
+        }, 200)*/
+        this.collisionTest ();
+        this.collisionEvent()
 
     }
 
@@ -105,6 +115,18 @@ class Level {
     
     }
 
+    createCannon(gridPosition) {
+
+        const randomQuestionNumber = Math.floor(Math.random() * 4);
+        const chooseQuestion = this.spaceshipArray[randomQuestionNumber].question;
+        this.correctQuestion = chooseQuestion;
+
+        //waApi.getShort(chooseQuestion).then(console.log, console.error)
+
+        this.cannon = new Cannon (chooseQuestion, gridPosition);
+
+    }
+
     collisionTest () {
 
 
@@ -113,11 +135,13 @@ class Level {
 
             let cannonRect = this.cannon.DOMRect;
 
-            for (let i = 0; i < this.spaceshipArray.length; i++) {
+            // let i = 0; i < this.spaceshipArray.length; i++
+            for (const currentSpaceship of this.spaceshipArray) {
 
-                const currentSpaceship = this.spaceshipArray[i];
+                //const currentSpaceship = this.spaceshipArray[i];
                 // console.log(spaceship);
                 const spaceshipRect = currentSpaceship.DOMRect;
+                const questionTest = currentSpaceship.question;
                 //console.log("Spaceship rect" + spaceshipRect.bottom);
                 //console.log("Cannon rect" + cannonRect.top);
 
@@ -134,13 +158,50 @@ class Level {
                     alert(`Game Over`);
                     this.collisionResult = 0;
                 }
-                if ((this.cannon.projectile != undefined) && (this.cannon.projectileRect != undefined) && ((spaceshipRect.bottom - 50) > (this.cannon.projectileRect.top + 50))) {
-                    alert(`Hit`);
+                if ((this.cannon.projectile != undefined) && (this.cannon.projectileRect != undefined) && ((spaceshipRect.bottom - 50) > (this.cannon.projectileRect.top + 50)) && (currentSpaceship.gridPosition == this.cannon.gridPosition)) {
+                    //alert(`Hit`);
+                    this.spaceshipHit = currentSpaceship;
                     this.collisionResult = 1;
-                    this.spaceshipHit = this.spaceshipsArray[i];
+                    
+                    this.questionHit = currentSpaceship.question;
+
                 }
             
-            };
+            }
+        }, 2)
+    }
+
+    collisionEvent() {
+
+        const collisionEventAction = setInterval(() => {
+
+            if (this.collisionResult == 0) {
+                this.gameOver == true;
+            } 
+            else if (this.collisionResult == 1)
+            {
+                if (this.questionHit == this.correctQuestion) {
+                    const currentCannonPosition = this.cannon.gridPosition;
+                    for (const currentSpaceship of this.spaceshipArray) {
+                        currentSpaceship.clearShip();
+                    }
+                    this.cannon.clearCannon();
+                    this.createSpaceships();
+                    this.createCannon(currentCannonPosition);
+                    this.questionHit = ``;
+
+                } 
+                else if ((this.questionHit !== this.correctQuestion) && (this.questionHit !==``)) {
+                    //console.log(this.questionHit);
+                    //console.log(this.correctQuestion);
+                    console.log(this.questionHit);
+                    console.log(this.correctQuestion);
+                    alert(`Wrong`)
+                    
+
+
+                }
+            }
         }, 2)
     }
 

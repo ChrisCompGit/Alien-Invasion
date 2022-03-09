@@ -137,6 +137,11 @@ class Spaceship
         }
     }
 
+    clearShip() {
+        this.shipStop
+        this.DOMElement.remove()
+    }
+
 }
 
 

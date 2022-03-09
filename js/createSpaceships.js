@@ -48,3 +48,8 @@ const createSpaceships = (difficulty) => {
 };
 
 export {createSpaceships}; */
+
+
+c
+
+waApi.getShort('2+2').then(console.log, console.error);

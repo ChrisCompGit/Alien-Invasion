@@ -98,19 +98,19 @@ const main = (() => {
 
         //Testing Cannon
 
-        const testCannon = new Cannon ("3+4");
+        //const testCannon = new Cannon ("3+4");
         
-        document.addEventListener("keydown", event => {
+        /*document.addEventListener("keydown", event => {
             if(event.key===" ")
             {
                 testCannon.cannonShoot();
             };
-        });
+        });*/
               
                 
 
         const intervalTest = setTimeout(() => {
-        const testLevel = new Level (90, testCannon, 0);
+        const testLevel = new Level (90, 0);
         }, 200)
 
 
