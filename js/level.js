@@ -19,12 +19,13 @@ class Level {
     missCounter;
     playerName;
     currentLevel;
-    correctnQuestion;
+    correctQuestion;
     audio;
     collisionResult;
     spaceshipHit;
     questionHit;
     gameOver;
+    collisionCheckInterval;
 
     //score;
 
@@ -188,25 +189,37 @@ class Level {
                         this.collisionResult = 0;
                         this.collisionEvent();
                     }
-                    if ((this.cannon.projectile !== undefined) && (this.cannon.projectileRect !== undefined) && ((spaceshipRect.bottom - 50) > (this.cannon.projectileRect.top + 50)) && (currentSpaceship.gridPosition == this.cannon.gridPosition)) {
+                    if ((this.cannon.projectileRect !== undefined) && ((spaceshipRect.bottom - 50) > (this.cannon.projectileRect.top + 50)) && (currentSpaceship.gridPosition == this.cannon.projectileGridPosition)) {
                         //alert(`Hit`);
                         this.spaceshipHit = currentSpaceship;
                         this.collisionResult = 1;
                         
                         this.questionHit = currentSpaceship.question;
                         this.collisionEvent();
+                        this.collisionResult = undefined
+                        
+                        
+                        
                     }
 
                 }
             
             }
         }, 2)
+
+        this.collisionCheckInterval = collision;
+
+        
+    }
+
+    collisionClear () {
+        clearInterval(this.collisionCheckInterval);
+        
     }
 
     collisionEvent() {
 
         
-
             if (this.collisionResult == 0) {
                 this.gameOver == true;
             } 
@@ -227,9 +240,13 @@ class Level {
                 else if ((this.questionHit !== this.correctQuestion) && (this.questionHit !==``) && (this.cannon.projectile !== undefined)) {
                     //console.log(this.questionHit);
                     //console.log(this.correctQuestion);
-                    this.cannon.clearProjectileOnly();
+                    
                     this.questionAnswerReset();
+                    this.cannon.clearProjectileOnly();
                     this.collisionResult = undefined;
+                     
+                    console.log(this.questionHit);
+                    //this.collisionClear();
 
 
                 }

@@ -9,6 +9,7 @@ class Cannon {
     DOMRect;
     projectile;
     projectileRect;
+    projectileGridPosition;
 
 
 
@@ -47,6 +48,7 @@ class Cannon {
         align-content: center;
         justify-content: center;
         margin-bottom: -15px;
+        z-index: 1;
         `;
 
         //Style the answer
@@ -115,8 +117,10 @@ class Cannon {
                 width: 80px;
                 background: url("../media/Game-Objects/Cannon-Shot.gif") no-repeat center center/contain;
                 transform: rotate(-90deg);
-                z-index: 0;
+                z-index: -1;
                 `;
+
+                this.projectileGridPosition = this.gridPosition;
 
 
                 const freeProjectile = setTimeout( () => {
@@ -143,11 +147,13 @@ class Cannon {
                     projectile.style.bottom = `${projectileBottom}px`;
                     projectileBottom+= 4;
                     this.projectile = projectile;
-                }, 2);
 
-                if (projectile == undefined) {
-                    clearInterval(projectileUp);
-                }
+                    if (projectile == undefined) {
+                        this.projectile.remove();
+                        clearInterval(projectileUp);
+                    }
+                    
+                }, 2);
 
             };
         });  
@@ -174,11 +180,14 @@ class Cannon {
         this.DOMElement.remove();
         this.projectile.remove();
 
+
     }
 
     clearProjectileOnly() {
         this.projectile.remove();
         this.projectile = undefined;
+        this.projectileRect = undefined;
+        //this.projectileGridPosition = undefined;
     }
 
 }
