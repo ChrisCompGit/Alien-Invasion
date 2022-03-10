@@ -1,4 +1,4 @@
-import {menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1} from "./DOMTree.js";
+import {menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1,  gameGrid1, gameGrid2} from "./DOMTree.js";
 
 class Cannon {
     gridPosition;
@@ -10,13 +10,15 @@ class Cannon {
     projectile;
     projectileRect;
     projectileGridPosition;
+    level;
 
 
 
-    constructor (answer, gridPosition) {
+    constructor (answer, gridPosition, level) {
 
         this.answer = answer;
         this.gridPosition = gridPosition;
+        this.level = level;
         this.image = "../media/Game-Objects/Cannon-Facing-Left.png";
 
         this.createCannon();
@@ -29,14 +31,19 @@ class Cannon {
 
     createCannon() {
         //Create the div for the spaceship
-        const cannonDOM = gameGrid.appendChild(document.createElement("div"));
+       let cannonDom;
+        if (this.level == 1) {
+            cannonDom = gameGrid1.appendChild(document.createElement("div"));
+        } else if (this.level == 2) {
+            cannonDom = gameGrid2.appendChild(document.createElement("div"));
+        }
 
         //Add answer
-        const answer = cannonDOM.appendChild(document.createElement("p"));
+        const answer = cannonDom.appendChild(document.createElement("p"));
         answer.innerText = this.answer;
 
         //Style the div
-        cannonDOM.style.cssText = `
+        cannonDom.style.cssText = `
         display: grid;
         height: 250px;
         width: 181px;
@@ -58,30 +65,11 @@ class Cannon {
         answer.style.padding = "0px 10px";
 
         //Assign it to property
-        this.DOMElement = cannonDOM;
+        this.DOMElement = cannonDom;
 
     }
 
     cannonMove() {
-
-        /*function buttonCheck(e) {
-            if(e.key===ArrowRight)
-            {
-            if (this.gridPosition < 5)  
-                {  
-                this.gridPosition++;
-                this.DOMElement.style.gridColumn = this.gridPosition;
-                }
-            }
-            else if(e.key===ArrowLeft)
-            {
-                if (this.gridPosition > 1)  
-                {  
-                this.gridPosition--;
-                this.DOMElement.style.gridColumn = this.gridPosition;
-                }
-            }
-        }*/
 
         document.addEventListener("keydown", event => {
             if(event.key==="ArrowRight")
@@ -169,9 +157,7 @@ class Cannon {
             }
         }, 2)
 
-        if (this.DOMElement == undefined) {
-            clearInterval(DOMRectMonitor);
-        }
+        this.cannonRectMonitor = DOMRectMonitor;
 
     }
 
@@ -179,7 +165,7 @@ class Cannon {
         
         this.DOMElement.remove();
         this.projectile.remove();
-
+        clearInterval(this.cannonRectMonitor);
 
     }
 

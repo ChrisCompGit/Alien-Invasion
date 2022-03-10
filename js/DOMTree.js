@@ -11,10 +11,16 @@
     const startButton = document.querySelector(".menu-screen > div > div:nth-child(2)");
     const form = document.querySelector("#username");
     const level1 = document.querySelector("#level1");
+    const level2 = document.querySelector("#level2");
     const easyDifficulty = document.querySelector("#easyDifficulty");
     const hardDifficulty = document.querySelector("#hardDifficulty");   
-    const gameGrid = document.querySelector("#gameGrid");
-    const timerNode = document.querySelector(".timerNode");
+    const gameGrid1 = document.querySelector("#gameGrid1");
+    const gameGrid2 = document.querySelector("#gameGrid2");
+    const timerNode = document.querySelectorAll(".timerNode");
+    const scoreCounterNode = document.querySelectorAll(".score-counter");
+    const hitCounterNode = document.querySelectorAll(".hit-counter");
+    const missCounterNode = document.querySelectorAll(".miss-counter");
+    const gameOverScreen = document.querySelector(".gameover-screen");
 
 
-export {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, easyDifficulty, hardDifficulty, gameGrid, timerNode};
+export {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, gameGrid1, gameGrid2, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode};

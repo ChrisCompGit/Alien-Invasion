@@ -1,4 +1,4 @@
-import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, easyDifficulty, hardDifficulty, timerNode} from "./DOMTree.js";
+import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode,  gameGrid1, gameGrid2} from "./DOMTree.js";
 import { Spaceship } from "./spaceship.js";
 import { Cannon } from "./cannon.js";
 import { Level } from "./level.js";
@@ -75,7 +75,7 @@ const main = (() => {
         //const spaceshipArray = createSpaceships(0);
         //console.log (spaceshipArray);
 
-
+        
     
         
         /* //Testing shipStop()
@@ -109,11 +109,24 @@ const main = (() => {
               
                 
 
-        const intervalTest = setTimeout(() => {
-        const testLevel = new Level (90, 0);
-        }, 200)
+        /* const intervalTest = setTimeout(() => {
+        const testLevel = new Level (90, 0, 0, 0);
+        }, 200) */
+        const levelOne = new Level (90, 0, 0, 0, 1);
 
+        const levelResultTest = setTimeout(() => {
+            if (levelOne.gameWon == true) {
+                level1.classList.add("hide");
+                level2.classList.remove("hide");
+                Object.seal(levelOne);
+                const levelTwo = new Level (90, 0, 0, 0, 2);
+                console.log("test");
+            }
+            console.log("test");
+            console.log(levelOne.gameWon);
 
+        }, 30000)
+        
     });
 
     

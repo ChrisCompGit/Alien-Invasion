@@ -1,5 +1,5 @@
 
-import {menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1} from "./DOMTree.js";
+import {menu, playButton, startScreen, rulesButton, rulesScreen, backToMenuButton, startButton, form, level1, gameGrid1, gameGrid2} from "./DOMTree.js";
 
 class Spaceship 
 {
@@ -16,14 +16,17 @@ class Spaceship
     DOMElement;
     shipMovement;
     DOMRect;
+    shipRectMonitor;
+    level;
 
-    constructor(type, question, marginTop, position, difficulty)
+    constructor(type, question, marginTop, position, difficulty, level)
     {
         this.type = type;
         this.question = question;
         this.marginTop = marginTop;
         this.gridPosition = position;
         this.difficulty = difficulty;
+        this.level = level;
 
         if(type == 1)
         {
@@ -68,15 +71,23 @@ class Spaceship
 
     createSpaceship () {
         //Create div for spaceship
-        const spaceshipDOM = gameGrid.appendChild(document.createElement("div"));
+        let spaceshipDom;
+        console.log(this.level);
+        
+        if (this.level == 1) {
+            spaceshipDom = gameGrid1.appendChild(document.createElement("div"));
+        } else if (this.level == 2) {
+            spaceshipDom = gameGrid2.appendChild(document.createElement("div"));
+        }
+        console.log(spaceshipDom);
 
         //Add question
-        const question = spaceshipDOM.appendChild(document.createElement("p"));
+        const question = spaceshipDom.appendChild(document.createElement("p"));
         question.innerText = this.question;
         
 
         //Style the div
-        spaceshipDOM.style.cssText = `
+        spaceshipDom.style.cssText = `
         display: grid;
         height: 200px;
         width: 199px;
@@ -98,7 +109,7 @@ class Spaceship
         question.style.padding = "0px 10px";
 
         //Assign it to property
-        this.DOMElement = spaceshipDOM;
+        this.DOMElement = spaceshipDom;
     }
 
 
@@ -128,7 +139,10 @@ class Spaceship
     getDOMRect () {
         const DOMRectMonitor = setInterval(()=>{
             this.DOMRect = this.DOMElement.getBoundingClientRect();
-    }, 2)};
+
+    }, 2);
+    this.shipRectMonitor = DOMRectMonitor;
+    }
     
 
     hardDifficultyCheck () {
@@ -138,8 +152,11 @@ class Spaceship
     }
 
     clearShip() {
-        this.shipStop
-        this.DOMElement.remove()
+        this.shipStop();
+        this.DOMElement.remove();
+
+        clearInterval(this.shipRectMonitor);
+
     }
 
 }
