@@ -110,6 +110,8 @@ class Level {
 
     questionAnswerReset () {
 
+        const currentCannonPosition = this.cannon.gridPosition;
+
         //question reset
         const newQuestionsArray = this.createQuestions();
         for (let i = 0; i < this.spaceshipArray.length; i++) {
@@ -118,8 +120,10 @@ class Level {
         }
 
         //answer reset
-        const newAnswer = this.createAnswer();
-        this.cannon.DOMElement.firstElementChild.innerText = this.createAnswer();
+        //const newAnswer = this.createAnswer();
+        //this.cannon.DOMElement.firstElementChild.innerText = this.createAnswer();
+        this.cannon.clearCannon();
+        this.createCannon(currentCannonPosition);
 
     }
 
@@ -151,7 +155,7 @@ class Level {
         this.correctQuestion = answer;
 
         //waApi.getShort(chooseQuestion).then(console.log, console.error)
-
+        
         this.cannon = new Cannon (answer, gridPosition);
 
     }
@@ -196,7 +200,8 @@ class Level {
                         
                         this.questionHit = currentSpaceship.question;
                         this.collisionEvent();
-                        this.collisionResult = undefined
+                        this.collisionResult = undefined;
+
                         
                         
                         
@@ -240,12 +245,12 @@ class Level {
                 else if ((this.questionHit !== this.correctQuestion) && (this.questionHit !==``) && (this.cannon.projectile !== undefined)) {
                     //console.log(this.questionHit);
                     //console.log(this.correctQuestion);
-                    
                     this.questionAnswerReset();
-                    this.cannon.clearProjectileOnly();
-                    this.collisionResult = undefined;
+                    
+                    //this.collisionResult = undefined;
+
+                    console.log("test");
                      
-                    console.log(this.questionHit);
                     //this.collisionClear();
 
 
