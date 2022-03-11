@@ -49,7 +49,6 @@ class Level {
         this.startTimer ();
         this.createSpaceships (this.difficulty, this.level);
         this.createCannon(3, this.level);
-        console.log(timerNode);
         
         /* const intervalTest = setTimeout(() => {
         this.collisionTest ();
@@ -57,19 +56,24 @@ class Level {
         this.collisionTest ();
         
         //this.gameOverFunc();
-        this.checkCounters();
-        this.updateCounters();
+        //this.checkCounters();
+        //this.updateCounters();
 
-        console.log(this.level);
     }
 
     startTimer () {
         
         const timeRef= setInterval(()=>{
+            
             let timerElement;
+
             if (this.level == 1){
                 timerElement = timerNode[0];
             }
+            else if (this.level == 2){
+                timerElement = timerNode[1];
+            }
+
             this.timer -= 3;
             timerElement.innerHTML = "Timer: " + this.timer;
              
@@ -94,7 +98,7 @@ class Level {
             this.clearLevel();
             clearInterval(timeRef);
 
-        }, 30000);
+        }, 30100);
 
     
     }
@@ -112,8 +116,15 @@ class Level {
             for (let i = 0; i < 5; i++) {
                 const firstNum = Math.floor(Math.random() * 25) + 1;
                 const secondNum = Math.floor(Math.random() * 9) + 1;
+
+                let operation;
+                if (this.level == 1) {
+                    operation = `+`
+                } else if (this.level == 2) {
+                    operation = `-`
+                }
     
-                const createdQuestion = `${firstNum}+${secondNum}`;
+                const createdQuestion = `${firstNum}${operation}${secondNum}`;
                 questionsSetTest.add(createdQuestion);
             }
     
@@ -130,10 +141,11 @@ class Level {
     }
 
 
-    createAnswer() {
+    chooseQuestion() {
         const randomQuestionNumber = Math.floor(Math.random() * 4);
         const chosenQuestion = this.spaceshipArray[randomQuestionNumber].question
 
+        
         return chosenQuestion;
 
     }
@@ -183,8 +195,9 @@ class Level {
     createCannon(gridPosition, level) {
 
         const randomQuestionNumber = Math.floor(Math.random() * 4);
-        const answer = this.createAnswer();
-        this.correctQuestion = answer;
+        const chosenQuestion = this.chooseQuestion();
+        this.correctQuestion = chosenQuestion;
+        const answer = eval(chosenQuestion);
 
         //waApi.getShort(chooseQuestion).then(console.log, console.error)
         
@@ -217,7 +230,8 @@ class Level {
                         //alert(`Game Over`);
                         this.collisionResult = 0;
                         this.collisionEvent();
-                        this.gameWon = false;
+                        //this.gameOver = true;
+                        
                         //this.clearLevel();
                         //clearInterval(timeRef);
                     }
@@ -227,7 +241,8 @@ class Level {
                         //alert(`Game Over`);
                         this.collisionResult = 0;
                         this.collisionEvent();
-                        this.gameWon = false;
+                        //this.gameOver = true;
+
                         //this.clearLevel();
                         //clearInterval(timeRef);
                     }
@@ -235,6 +250,7 @@ class Level {
                         //alert(`Hit`);
                         this.spaceshipHit = currentSpaceship;
                         this.collisionResult = 1;
+                        //this.gameWon = true;
                         
                         this.questionHit = currentSpaceship.question;
                         this.collisionEvent();
@@ -304,32 +320,47 @@ class Level {
     checkCounters() {
 
         if (this.collisionResult == 1)
-
+        {
             if (this.questionHit == this.correctQuestion) 
             {
                 this.hitCounter++;
                 this.scoreCounter++;
-                console.log(this.hitCounter);
+                //console.log(this.hitCounter);
             }
             
             else if ((this.questionHit !== this.correctQuestion) && (this.questionHit !==``) && (this.cannon.projectile !== undefined))
             {
                 this.missCounter++;
             }
-
+        }
     }
 
     updateCounters() {
 
+        let hitElement;
+        let scoreElement;
+        let missElement;
+
+        if (this.level == 1){
+            hitElement = hitCounterNode[0];
+            scoreElement = scoreCounterNode[0];
+            missElement = missCounterNode[0];
+        }
+        else if (this.level == 2){
+            hitElement = hitCounterNode[1];
+            scoreElement = scoreCounterNode[1];
+            missElement = missCounterNode[1];
+        }
+
         if (this.questionHit == this.correctQuestion) 
         {
-            hitCounterNode.innerHTML = "Hit: " + this.hitCounter;
+            hitElement.innerHTML = "Hit: " + this.hitCounter;
             this.scoreCounter = this.hitCounter * 100;
-            scoreCounterNode.innerHTML = "Score: " + this.scoreCounter;
+            scoreElement.innerHTML = "Score: " + this.scoreCounter;
         }    
         else if ((this.questionHit !== this.correctQuestion) && (this.questionHit !==``) && (this.cannon.projectile !== undefined))
         {
-            missCounterNode.innerHTML = "Miss: " + this.missCounter;
+            missElement.innerHTML = "Miss: " + this.missCounter;
         }
     }
 

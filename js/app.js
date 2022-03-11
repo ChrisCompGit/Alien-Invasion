@@ -1,4 +1,4 @@
-import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode,  gameGrid1, gameGrid2} from "./DOMTree.js";
+import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, gameGrid1, gameGrid2} from "./DOMTree.js";
 import { Spaceship } from "./spaceship.js";
 import { Cannon } from "./cannon.js";
 import { Level } from "./level.js";
@@ -17,6 +17,7 @@ const main = (() => {
     //EVENT LISTENERS
 
     //Home Page
+
     playButton.addEventListener("click",() =>{
         menu.classList.remove("hide");
         playButton.classList.add("hide");
@@ -24,6 +25,7 @@ const main = (() => {
     });
 
     //Menu Screen
+
     startButton.addEventListener("click",() =>{
         menu.classList.add("hide");
         form.classList.remove("hide");
@@ -42,9 +44,6 @@ const main = (() => {
 
     //Rules Screen
 
-
-
-
     backToMenuButton.addEventListener("click",() =>{
         rulesScreen.classList.add("hide");
         menu.classList.remove("hide");
@@ -57,6 +56,7 @@ const main = (() => {
     });
 
     //Gameplay LVL 1
+
     easyDifficulty.addEventListener("click",() => {
         menu.classList.add("hide");
         level1.classList.remove("hide");
@@ -118,14 +118,19 @@ const main = (() => {
             if (levelOne.gameWon == true) {
                 level1.classList.add("hide");
                 level2.classList.remove("hide");
-                Object.seal(levelOne);
                 const levelTwo = new Level (90, 0, 0, 0, 2);
                 console.log("test");
             }
-            console.log("test");
-            console.log(levelOne.gameWon);
+            
+            /*else if (levelOne.gameOver == true) {
+                level1.classList.add("hide");
+                gameOverScreen.remove("hide");
+            }*/
+            
+            //console.log("test");
+            //console.log(levelOne.gameWon);
 
-        }, 30000)
+        }, 30005)
         
     });
 
