@@ -1,4 +1,4 @@
-import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, gameGrid1, gameGrid2} from "./DOMTree.js";
+import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, gameGrid1, gameGrid2, congratsScreen, userNameMenu} from "./DOMTree.js";
 import { Spaceship } from "./spaceship.js";
 import { Cannon } from "./cannon.js";
 import { Level } from "./level.js";
@@ -58,7 +58,7 @@ const main = (() => {
     //Gameplay LVL 1
 
     easyDifficulty.addEventListener("click",() => {
-        menu.classList.add("hide");
+        userNameMenu.classList.add("hide");
         level1.classList.remove("hide");
         
         //Testing Spaceship
@@ -114,12 +114,20 @@ const main = (() => {
         }, 200) */
         const levelOne = new Level (90, 0, 0, 0, 1);
 
-        const levelResultTest = setTimeout(() => {
+        const levelResultTestOne = setTimeout(() => {
             if (levelOne.gameWon == true) {
                 level1.classList.add("hide");
                 level2.classList.remove("hide");
                 const levelTwo = new Level (90, 0, 0, 0, 2);
                 console.log("test");
+
+                const levelResultTestOne = setTimeout(() => {
+                    if (levelTwo.gameWon == true) {
+                        level2.classList.add("hide");
+                        congratsScreen.classList.remove("hide");
+                        console.log(congratsScreen);
+                    }
+                }, 30015)
             }
             
             /*else if (levelOne.gameOver == true) {
@@ -130,7 +138,9 @@ const main = (() => {
             //console.log("test");
             //console.log(levelOne.gameWon);
 
-        }, 30005)
+        }, 30015)
+
+
         
     });
 

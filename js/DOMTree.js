@@ -21,6 +21,9 @@
     const hitCounterNode = document.querySelectorAll(".hit-counter");
     const missCounterNode = document.querySelectorAll(".miss-counter");
     const gameOverScreen = document.querySelector(".gameover-screen");
+    const congratsScreen = document.querySelector(".congrats-screen");
+    const userNameMenu = document.querySelector("#username");
 
 
-export {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, gameGrid1, gameGrid2, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode};
+
+export {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, gameGrid1, gameGrid2, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, congratsScreen, userNameMenu};
