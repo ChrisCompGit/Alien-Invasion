@@ -74,22 +74,24 @@ class Level {
                 timerElement = timerNode[1];
             }
 
-            this.timer -= 3;
+            this.timer--;
             timerElement.innerHTML = "Timer: " + this.timer;
              
-            if(this.timer < 60)
+            if(this.timer < 20)
             {
                 timerElement.style.color="yellow";
             }
 
-            if(this.timer < 30)
+            if(this.timer < 10)
             {
                 timerElement.style.color="red";
             }
 
             if(this.timer <= 0)
             {
+                if (this.gameWon == undefined) {
                 this.gameWon = true;
+                }
                 /*for (const currentSpaceship of this.spaceshipArray) {
                     currentSpaceship.shipStop();
                     currentSpaceship.clearShip();

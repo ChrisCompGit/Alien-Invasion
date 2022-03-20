@@ -1,5 +1,6 @@
 Things left to do:
-    - Clean up imports in spaceship and cannon
-    - Make level object
-    - Fix the cannon from moving with viewport
-    - Make the cannon move
+    - Add save function
+    - Add audio 
+    - Fix buttons from the game over/congrats screen
+    - intermission screen
+    - Fill instructions screen

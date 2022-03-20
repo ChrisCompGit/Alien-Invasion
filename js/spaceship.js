@@ -56,6 +56,7 @@ class Spaceship
 
 
         this.createSpaceship();
+        this.hardDifficultyCheck();
         this.shipMove(true);
         this.getDOMRect();
     }
