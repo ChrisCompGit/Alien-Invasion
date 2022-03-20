@@ -76,7 +76,7 @@
     z-index: -1;
 }
 
-.congrats-screen{
+.level-win-screen{
     content:'';
     background: url(../media/Screens/Congrats-Screen.jpg) no-repeat center center/cover;
     width: 100%;
@@ -91,6 +91,18 @@
 .gameover-screen{
     content:'';
     background: url(../media/Screens/Game-Over-Screen.jpg) no-repeat center center/cover;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.congrats-screen{
+    content:'';
+    background: url(../media/Screens/Congrats-Screen.jpg) no-repeat center center/cover;
     width: 100%;
     height: 100%;
     max-width: 100%;

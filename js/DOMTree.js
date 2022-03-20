@@ -21,9 +21,11 @@
     const hitCounterNode = document.querySelectorAll(".hit-counter");
     const missCounterNode = document.querySelectorAll(".miss-counter");
     const gameOverScreen = document.querySelector(".gameover-screen");
+    const gameOverRestartButton = document.querySelector(".gameover-screen > div > div > div:nth-child(1)");
+    const gameOverExitButton = document.querySelector(".gameover-screen > div > div > div:nth-child(2)");
     const congratsScreen = document.querySelector(".congrats-screen");
     const userNameMenu = document.querySelector("#username");
 
 
 
-export {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, gameGrid1, gameGrid2, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, congratsScreen, userNameMenu};
+export {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, gameGrid1, gameGrid2, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, congratsScreen, userNameMenu, gameOverRestartButton, gameOverExitButton};

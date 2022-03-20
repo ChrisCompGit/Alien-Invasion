@@ -44,9 +44,9 @@
             <div class="grid-100">
                 <div class="grid grid-items-pos-center align-items-center">
                     <!-- <h2>Rules</h2> -->
-                    <p class="rules-font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, corrupti.</p>
-                    <p class="rules-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, sequi!</p>
-                    <p class="rules-font">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, quod?</p>
+                    <p class="game-font">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, corrupti.</p>
+                    <p class="game-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, sequi!</p>
+                    <p class="game-font">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, quod?</p>
                 </div>
                 <div class="grid grid-col-2 grid-items-pos-center rule-menu">            
                     <div class="rules-btn btn">Back to Menu</div>
@@ -59,9 +59,9 @@
         <!-- Game Start -->
         <div id="username" class="menu-screen grid grid-items-pos-center align-items-center hide">
             <form class="grid grid-col-1">
-                <label for="userName" class="rules-font line-height">Enter your name</label>
+                <label for="userName" class="game-font line-height">Enter your name</label>
                 <input type="text" id="userName" class="form-border">
-                <div class="rules-font padding-top-med">Difficulty Level: </div>
+                <div class="game-font padding-top-med">Difficulty Level: </div>
                 <div id="easyDifficulty" class="rules-btn btn" type="button">Easy</div>
                 <div id="hardDifficulty" class="rules-btn btn" type="button">Hard</div>
             </form>
@@ -91,7 +91,7 @@
 
 
         <!-- Level win screen -->
-        <div class="congrats-screen hide">
+        <div class="level-win-screen hide">
             <h1>Congratulations!</h1>
             <div >Next</div>             <!--Save???-->
             <div >Quit Game</div>
@@ -100,11 +100,13 @@
 
         <!-- Level lose screen -->
         <div class="gameover-screen hide">
-            <h1>Sorry, you lost!</h1>
+            <div class="grid-100 grid-items-pos-center align-items-center">
+                <h1 class="game-font padding-bottom-lg">Sorry, you lost!</h1>
 
-            <div>
-                <div >Restart Game</div>
-                <div >Quit Game</div>
+                <div>
+                    <div class="rules-btn btn" type="button">Restart Game</div>
+                    <div class="rules-btn btn" type="button">Quit Game</div>
+                </div>
             </div>
         </div>
 

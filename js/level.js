@@ -63,7 +63,7 @@ class Level {
 
     startTimer () {
         
-        const timeRef= setInterval(()=>{
+        this.timeRef= setInterval(()=>{
             
             let timerElement;
 
@@ -90,15 +90,19 @@ class Level {
             if(this.timer <= 0)
             {
                 this.gameWon = true;
+                /*for (const currentSpaceship of this.spaceshipArray) {
+                    currentSpaceship.shipStop();
+                    currentSpaceship.clearShip();
+                }
+                console.log(this.spaceshipArray);
+                this.cannon.clearCannon();*/
+                this.clearLevel();
+                clearInterval(this.timeRef);
+                
                 
                 //this.gameOverFunc();
             } 
         },1000);
-        setTimeout(() => {
-            this.clearLevel();
-            clearInterval(timeRef);
-
-        }, 30100);
 
     
     }
@@ -230,7 +234,7 @@ class Level {
                         //alert(`Game Over`);
                         this.collisionResult = 0;
                         this.collisionEvent();
-                        //this.gameOver = true;
+                        this.gameWon = false;
                         
                         //this.clearLevel();
                         //clearInterval(timeRef);
@@ -241,7 +245,7 @@ class Level {
                         //alert(`Game Over`);
                         this.collisionResult = 0;
                         this.collisionEvent();
-                        //this.gameOver = true;
+                        this.gameWon = false;
 
                         //this.clearLevel();
                         //clearInterval(timeRef);
@@ -278,7 +282,7 @@ class Level {
     collisionEvent() {
 
             if (this.collisionResult == 0) {
-                this.gameOver == true;
+                this.gameWon == false;
                 //this.gameOverFunc();
             } 
             else if (this.collisionResult == 1)

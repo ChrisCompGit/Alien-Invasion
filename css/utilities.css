@@ -98,7 +98,7 @@
     padding-bottom: 50px;
 }
 
-.rules-font
+.game-font
 {
     font-size: 3rem;
     color: yellow;
@@ -138,4 +138,9 @@
 .padding-top-med
 {
     padding-top: 50px;
+}
+
+.padding-bottom-lg
+{
+    padding-bottom: 100px;
 }

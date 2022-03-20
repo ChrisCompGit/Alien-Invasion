@@ -164,8 +164,11 @@ class Cannon {
     clearCannon() {
         
         this.DOMElement.remove();
-        this.projectile.remove();
+        
         clearInterval(this.cannonRectMonitor);
+        if (this.projectile != undefined) {
+            this.projectile.remove();
+        }
 
     }
 
