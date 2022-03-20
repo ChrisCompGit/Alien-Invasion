@@ -144,3 +144,51 @@
 {
     padding-bottom: 100px;
 }
+
+.rules-margin
+{
+    margin: 500px 5px;
+    height: 50%;
+    perspective: 400px;
+    color: yellow;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    overflow: scroll;    
+}
+
+.fade {
+    position: relative;
+    width: 100%;
+    min-height: 10vh;
+    top: -25px;
+    background-image: linear-gradient(0deg, transparent, black 75%);
+    z-index: 1;
+  }
+
+.crawl {
+    position: relative;
+    top: 99999px;
+    animation: crawl 120s linear;
+  }
+
+@keyframes crawl {
+    0% {
+      top: -100px;
+      transform: rotateX(20deg)  translateZ(0);
+    }
+    100% { 
+      top: -6000px;
+      transform: rotateX(25deg) translateZ(-2500px);
+    }
+  }
+
+/* width */
+::-webkit-scrollbar {
+    width: 0px;
+  }
+  
+  /* Track */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 0, 0);
+  }
