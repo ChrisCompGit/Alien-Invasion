@@ -24,8 +24,10 @@
     const gameOverRestartButton = document.querySelector(".gameover-screen > div > div > div:nth-child(1)");
     const gameOverExitButton = document.querySelector(".gameover-screen > div > div > div:nth-child(2)");
     const congratsScreen = document.querySelector(".congrats-screen");
+    const congratsRestartButton = document.querySelector(".congrats-screen > div > div > div:nth-child(1)");
+    const congratsExitButton = document.querySelector(".congrats-screen > div > div > div:nth-child(2)");
     const userNameMenu = document.querySelector("#username");
 
 
 
-export {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, gameGrid1, gameGrid2, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, congratsScreen, userNameMenu, gameOverRestartButton, gameOverExitButton};
+export {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, gameGrid1, gameGrid2, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, congratsScreen, userNameMenu, gameOverRestartButton, gameOverExitButton, congratsRestartButton, congratsExitButton};

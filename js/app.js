@@ -1,4 +1,4 @@
-import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, gameGrid1, gameGrid2, congratsScreen, userNameMenu, gameOverRestartButton, gameOverExitButton} from "./DOMTree.js";
+import {menu, playButton, rulesButton, exitMenuButton, startScreen, rulesScreen, backToMenuButton, exitRulesButton, startButton, form, level1, level2, easyDifficulty, hardDifficulty, timerNode, gameOverScreen, scoreCounterNode, hitCounterNode, missCounterNode, gameGrid1, gameGrid2, congratsScreen, userNameMenu, gameOverRestartButton, gameOverExitButton, congratsRestartButton, congratsExitButton} from "./DOMTree.js";
 import { Spaceship } from "./spaceship.js";
 import { Cannon } from "./cannon.js";
 import { Level } from "./level.js";
@@ -112,6 +112,7 @@ const main = (() => {
                 if (levelOne.gameWon == false) {
                 level1.classList.add("hide");
                 gameOverScreen.classList.remove("hide");
+                clearInterval(gameOverChecker);
                 }
             }, 2);
 
@@ -127,6 +128,7 @@ const main = (() => {
                     if (levelTwo.gameWon == false) {
                         level2.classList.add("hide");
                         gameOverScreen.classList.remove("hide");
+                        clearInterval(gameOverChecker);
                     }
                 }, 2);
                 
@@ -134,7 +136,7 @@ const main = (() => {
                     if (levelTwo.gameWon == true) {
                         level2.classList.add("hide");
                         congratsScreen.classList.remove("hide");
-                        console.log(congratsScreen);
+                        clearTimeout(levelResultTestOne);
                     }
                     
                 }, 30100)
@@ -142,11 +144,63 @@ const main = (() => {
 
 
         }, 30100)
+
+
            
     });
 
+    gameOverRestartButton.addEventListener("click", () => {
+        gameOverScreen.classList.add("hide");
+        //gameOverRestartButton.classList.add("hide");
+        //gameOverExitButton.classList.add("hide");
+        level1.classList.add("hide");
+        level2.classList.add("hide");
+        playButton.classList.add("hide");
+        startScreen.classList.add("hide");
+        menu.classList.remove("hide");
+        userNameMenu.classList.remove("hide");
 
+    });
+    
+    gameOverExitButton.addEventListener("click", () => {
+        gameOverScreen.classList.add("hide");
+        //gameOverRestartButton.classList.add("hide");
+        //gameOverExitButton.classList.add("hide");
+        level1.classList.add("hide");
+        level2.classList.add("hide");
+        menu.classList.add("hide");
+        userNameMenu.classList.add("hide");
+        playButton.classList.remove("hide");
+        startScreen.classList.remove("hide");
 
+    });
+
+    congratsRestartButton.addEventListener("click", () => {
+        congratsScreen.classList.add("hide");
+        //congratsRestartButton.classList.add("hide");
+        //congratsExitButton.classList.add("hide");
+        level1.classList.add("hide");
+        level2.classList.add("hide");
+        playButton.classList.add("hide");
+        startScreen.classList.add("hide");
+        menu.classList.remove("hide");
+        userNameMenu.classList.remove("hide");
+
+    });
+    
+    
+    congratsExitButton.addEventListener("click", () => {
+        congratsScreen.classList.add("hide");
+        //congratsRestartButton.classList.add("hide");
+        //congratsExitButton.classList.add("hide");
+        level1.classList.add("hide");
+        level2.classList.add("hide");
+        menu.classList.add("hide");
+        userNameMenu.classList.add("hide");
+        playButton.classList.remove("hide");
+        startScreen.classList.remove("hide");
+
+    });
 
 
 
